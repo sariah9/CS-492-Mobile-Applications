@@ -31,122 +31,122 @@ class _JobPState extends State<JobPredictorScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: _mainBody(),
-      ), 
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 3,
+              child: _textBox(
+                'Ask a question and let me divine your future.',
+                'Pacifico',
+                40,
+                TextAlign.left,
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.transparent,
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: FlatButton( 
+                onPressed: () { 
+                  setState(() {   
+                    //random integer from 0 to n-1 
+                    answerNum = Random().nextInt(9); 
+                  }); 
+                },
+                child: Stack(
+                  children: <Widget>[
+                    // Stroked text as border.
+                    Text(
+                      answers[answerNum],
+                      style: TextStyle(
+                        fontFamily: 'RobotoSlab',
+                        fontSize: 28,
+                        foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 2
+                        ..color = Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    // Solid text as fill.
+                    Text(
+                      answers[answerNum],
+                      style: TextStyle(
+                        fontFamily: 'RobotoSlab',
+                        fontSize: 28,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: FractionallySizedBox(
+                heightFactor: 0.2,
+                widthFactor: 0.9,
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: _textBox(
+                'Click the ball above to reveal the truth',
+                'Imbue',
+                32,
+                TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   } 
 
-  Column _mainBody() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        _titleBox(),
-        SizedBox(height: 40.0),
-        FlatButton( 
-          onPressed: () { 
-            setState(() {   
-              //random integer from 0 to n-1 
-              answerNum = Random().nextInt(9); 
-            }); 
-          },
-          child: Stack(
-            children: <Widget>[
-              // Stroked text as border.
-              Text(
-                answers[answerNum],
-                style: TextStyle(
-                  fontFamily: 'RobotoSlab', 
-                  fontSize: 28,
-                  foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 2
-                  ..color = Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              // Solid text as fill.
-              Text(
-                answers[answerNum],
-                style: TextStyle(
-                  fontFamily: 'RobotoSlab', 
-                  fontSize: 28,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 160.0),
-        _instructions(),
-      ],
-    );
-  }
-
-  Widget _titleBox() {
+  Widget _textBox(
+    final String text,
+    final String fontFam,
+    final double fSize,
+    TextAlign spacing,
+    ) {
     return Padding( 
       padding: EdgeInsets.all(12.0), 
       child: Stack(
         children: <Widget>[
           // Stroked text as border.
           Text(
-            'Ask me a question and let me divine your future.',
+            text,
             style: TextStyle(
-              fontFamily: 'Pacifico',
-              fontSize: 40,
+              fontFamily: fontFam,
+              fontSize: fSize,
               foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 2
               ..color = Colors.black,
             ),
-            textAlign: TextAlign.left,
+            textAlign: spacing,
           ),
           // Solid text as fill.
           Text(
-            'Ask me a question and let me divine your future.',
+            text,
             style: TextStyle(
-              fontFamily: 'Pacifico',
-              fontSize: 40,
+              fontFamily: fontFam,
+              fontSize: fSize,
               color: Colors.white,
             ),
-            textAlign: TextAlign.left,
+            textAlign: spacing,
           ),
         ],
       ),
     );
   }
 
-   Widget _instructions() {
-    return Padding( 
-      padding: EdgeInsets.all(12.0),
-      child: Stack(
-        children: <Widget>[
-          // Stroked text as border.
-          Text(
-            'Click the ball above to reveal the truth',
-            style: TextStyle(
-              fontFamily: 'Imbue', 
-              fontSize: 32,
-              foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 2
-              ..color = Colors.black,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          // Solid text as fill.
-          Text(
-            'Click the ball above to reveal the truth',
-            style: TextStyle(
-              fontFamily: 'Imbue', 
-              fontSize: 32,
-              color: Colors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ), 
-    );
+  double padding(BuildContext context) {
+    return MediaQuery.of(context).size.height * 0.65;
   }
 } 

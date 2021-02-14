@@ -21,7 +21,8 @@ class MainTab extends StatelessWidget {
             fontFamily: 'RobotoSlab',
             fontSize: 20,
             fontWeight: boldness,
-        ),
+          ),
+        textAlign: TextAlign.center,
         ),
       ),
     );

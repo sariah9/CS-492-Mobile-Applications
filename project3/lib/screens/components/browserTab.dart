@@ -10,7 +10,7 @@ class BrowserTab extends StatefulWidget {
 class _BrowseState extends State<BrowserTab> {
   final TextsAndBrowser _service = locator<TextsAndBrowser>();
 
-  final String url = 'https://github.com/sariah9';
+  final String url = 'github.com/sariah9';
 
   @override
   Widget build(BuildContext context) {

@@ -1,1 +1,0 @@
-DELETE FROM journal_entries WHERE pid=id;
